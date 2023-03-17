@@ -6,26 +6,33 @@
 <body>
 <jsp:include page="partials/navbar.jsp"/>
 <div class="container">
-    <h1>Please fill in your information.</h1>
-    <form action="${pageContext.request.contextPath}/register" method="post">
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input id="username" name="username" class="form-control" type="text">
-        </div>
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input id="email" name="email" class="form-control" type="text">
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input id="password" name="password" class="form-control" type="password">
-        </div>
-        <div class="form-group">
-            <label for="confirm_password">Confirm Password</label>
-            <input id="confirm_password" name="confirm_password" class="form-control" type="password">
-        </div>
-        <input type="submit" class="btn btn-primary btn-block">
-    </form>
+    <div class="row">
+        <h1 class="col-12 text-center my-3">Register Account</h1>
+        <form class="container-fluid column-gap-md-2 col-md-8 column-gap-lg-3 col-lg-6 col-12"
+              action="${pageContext.request.contextPath}/register" method="post">
+            <div class="row gy-3">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input id="username" name="username" class="form-control" type="text">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input id="email" name="email" class="form-control" type="text">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input id="password" name="password" class="form-control" type="password">
+                </div>
+                <div class="form-group">
+                    <label for="confirm_password">Confirm Password</label>
+                    <input id="confirm_password" name="confirm_password" class="form-control" type="password">
+                </div>
+                <div class="form-group col-2">
+                    <input type="submit" class="btn btn-primary btn-block">
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
 
 <%@include file="partials/scripts.jsp" %>
