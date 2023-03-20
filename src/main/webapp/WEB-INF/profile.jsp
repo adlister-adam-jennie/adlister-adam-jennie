@@ -19,8 +19,8 @@
                 <h2 class="ad-title">${ad.title}</h2>
                 <p style="white-space: pre-line" class="ad-description">${ad.description}</p>
                 <form action="${pageContext.request.contextPath}/profile" method="post">
-                    <button type="button" data-btn-id="${ad.id}" class="btn my-btn-update" name="delete" value="${ad.id}"><i class="fa-solid fa-pen-to-square"></i></button>
-                    <button type="button" data-btn-id="${ad.id}" class="btn my-btn-delete" name="update" value="${ad.id}"><i class="fa-sharp fa-solid fa-square-xmark"></i></button>
+                    <a href="/ads/update?id=${ad.id}">Update</a>
+                    <a href="/ads/delete?id=${ad.id}">Delete</a>
                 </form>
             </div>
         </c:forEach>
