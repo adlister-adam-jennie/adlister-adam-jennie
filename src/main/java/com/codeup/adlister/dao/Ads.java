@@ -11,4 +11,6 @@ public interface Ads {
     Long insert(Ad ad);
 
     List<Ad> userAds(String username);
+
+    void deleteAds(int ad_id);
 }
