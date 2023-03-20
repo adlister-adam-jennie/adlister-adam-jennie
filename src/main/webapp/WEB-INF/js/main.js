@@ -43,25 +43,3 @@ function searchAds(input) {
 $("#ad-search").on("keyup", function (){
 	searchAds($(this).val().toLowerCase().trim());
 });
-
-$('.my-btn-delete').click(function(){
-	// console.log("hey it clicked!")
-	let targetID = parseInt($(this).attr("data-btn-id"));
-	for (let ad of ads) {
-		//match id of ad to the id of the delete button
-		// data-ad-id="${ad.id}">
-		// data-btn-id="${ad.id}"
-
-		//submit form to profile servlet?
-		if(ad.id === targetID){
-			console.log("hey it matches!")
-		}
-	}
-})
-// function adGetsDeleted(ad){
-// 	// let targetID = ads.id
-// 	console.log("hey!")
-// 	console.log(ad);
-// 	// fetch(`${url}/${targetID}`, {method: "DELETE"})
-// 	// 	.then(response => update());
-// }

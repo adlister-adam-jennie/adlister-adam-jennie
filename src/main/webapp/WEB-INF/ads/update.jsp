@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <jsp:include page="/WEB-INF/partials/head.jsp">
@@ -12,14 +13,15 @@
             <div class="row gy-3">
                 <div class="form-group">
                     <label for="title">Title</label>
-                    <input id="title" name="title" class="form-control" type="text">
+                    <input id="title" name="title" class="form-control" type="text" value="${ad.title}">
                 </div>
                 <div class="form-group">
                     <label for="description">Description</label>
-                    <textarea id="description" name="description" class="form-control"></textarea>
+                    <textarea id="description" name="description" class="form-control"><c:out value="${ad.description}"></c:out></textarea>
                 </div>
                 <div class="form-group col-2">
                     <input type="submit" class="btn btn-block btn-primary">
+                    <input name="id" value="${ad.id}" class="d-none">
                 </div>
             </div>
         </form>
