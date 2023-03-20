@@ -8,3 +8,6 @@
 <script>
     <jsp:include page="/WEB-INF/js/main.js"/>
 </script>
+<script>
+    <jsp:include page="/WEB-INF/js/validate.js"/>
+</script>
