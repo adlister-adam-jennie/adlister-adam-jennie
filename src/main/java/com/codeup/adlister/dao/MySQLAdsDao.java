@@ -38,6 +38,20 @@ public class MySQLAdsDao implements Ads {
         }
     }
 
+
+    @Override
+    public List<Ad> userAds(String username) {
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement("SELECT * FROM ad_lister_ads as a INNER JOIN ad_lister_users as u on a.user_id = u.user_id WHERE username = ?");
+            stmt.setString(1, username);
+            ResultSet rs = stmt.executeQuery();
+            return createAdsFromResults(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving the users ads.", e);
+        }
+    }
+
     @Override
     public Long insert(Ad ad) {
         try {
@@ -54,6 +68,8 @@ public class MySQLAdsDao implements Ads {
             throw new RuntimeException("Error creating a new ad.", e);
         }
     }
+
+
 
     private Ad extractAd(ResultSet rs) throws SQLException {
         return new Ad(
