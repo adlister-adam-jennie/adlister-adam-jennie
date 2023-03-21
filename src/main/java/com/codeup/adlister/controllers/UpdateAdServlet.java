@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(name = "controllers.UpdateAdServlet", urlPatterns = "/ads/update")
 public class UpdateAdServlet extends HttpServlet {
@@ -26,6 +27,10 @@ public class UpdateAdServlet extends HttpServlet {
 //        System.out.println(categoryId);
 //        the get ad method needs to grab the categories as well
         Ad ad = DaoFactory.getAdsDao().getAd(adId);
+        List<Category> categories = ad.getCategories();
+        for (Category category : categories) {
+//            request.getSession().setAttribute(), "checked");
+        }
         request.getSession().setAttribute("ad", ad);
         request.getRequestDispatcher("/WEB-INF/ads/update.jsp").forward(request, response);
 
