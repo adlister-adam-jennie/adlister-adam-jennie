@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <jsp:include page="/WEB-INF/partials/head.jsp">
@@ -8,10 +9,13 @@
 <div class="container">
         <h2 class="ad-title">${ad.title}</h2>
         <h4>Made by ${user.username}</h4>
-<%--    c for each through ad.categories--%>
-<%--        <p style="white-space: pre-line" class="ad-description">${}</p>--%>
+    <c:forEach var="category" items="${ad.categories}">
+        <p style="white-space: pre-line" class="ad-category">${category.name}</p>
+    </c:forEach>
         <p style="white-space: pre-line" class="ad-description">${ad.description}</p>
+
 </div>
+
 
 <%@include file="../partials/scripts.jsp" %>
 </body>
