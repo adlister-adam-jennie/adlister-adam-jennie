@@ -11,6 +11,8 @@
                     <c:when test="${user == null}">
                         <%--                        if user is logged out--%>
                         <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/login">Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/register">Register</a></li>
+
                     </c:when>
                     <c:otherwise>
 <%--                    if user is logged in--%>

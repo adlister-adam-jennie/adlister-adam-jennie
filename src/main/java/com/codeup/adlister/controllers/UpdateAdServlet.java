@@ -3,6 +3,7 @@ package com.codeup.adlister.controllers;
 import com.codeup.adlister.dao.DaoFactory;
 import com.codeup.adlister.dao.MySQLAdsDao;
 import com.codeup.adlister.models.Ad;
+import com.codeup.adlister.models.Category;
 import com.codeup.adlister.models.User;
 
 import javax.servlet.ServletException;
@@ -16,23 +17,24 @@ import java.io.IOException;
 public class UpdateAdServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (request.getSession().getAttribute("user") == null) {
-            System.out.println("hey we got here");
             response.sendRedirect("/profile");
             return;
         }
         long adId = Integer.parseInt(request.getParameter("id"));
+        System.out.println(adId);
+        long categoryId = request.getParameter()
+        System.out.println(categoryId);
+//        the get ad method needs to grab the categories as well
         Ad ad = DaoFactory.getAdsDao().getAd(adId);
         request.getSession().setAttribute("ad", ad);
         request.getRequestDispatcher("/WEB-INF/ads/update.jsp").forward(request, response);
 
-//        get is the form
-//        post is the submit
-//        new method in the dao
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         long adId = Integer.parseInt(request.getParameter("id"));
         String updateTitle = request.getParameter("title");
         String updateDescription = request.getParameter("description");
+//        needs to update the categories as well
         DaoFactory.getAdsDao().updateAd(adId, updateTitle, updateDescription);
 
         response.sendRedirect("/profile");

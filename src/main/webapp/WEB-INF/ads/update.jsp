@@ -19,6 +19,32 @@
                     <label for="description">Description</label>
                     <textarea id="description" name="description" class="form-control"><c:out value="${ad.description}"></c:out></textarea>
                 </div>
+                <div class="form-group">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="${category.id}" name="service" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Service
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="${category.id}" name="product" id="flexCheckChecked">
+                        <label class="form-check-label" for="flexCheckChecked">
+                            Product
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="${category.id}" name="recruitment" id="flexCheckChecked">
+                        <label class="form-check-label" for="flexCheckChecked">
+                            Recruitment
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="${category.id}" name="limitedTime" id="flexCheckChecked">
+                        <label class="form-check-label" for="flexCheckChecked">
+                            Limited Time
+                        </label>
+                    </div>
+                </div>
                 <div class="form-group col-2">
                     <input type="submit" class="btn btn-block btn-primary">
                     <input name="id" value="${ad.id}" class="d-none">
