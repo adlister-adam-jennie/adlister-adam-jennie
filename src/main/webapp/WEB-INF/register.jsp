@@ -25,16 +25,18 @@
                         Please enter a valid email.
                     </div>
                 </div>
-                <div class="form-group passwords-match-validation">
+                <div class="form-group">
                     <label for="password">Password</label>
-                    <input id="password" name="password" class="form-control" type="password" required>
+                    <input id="password" name="password" class="form-control passwords-match-validation" type="password"
+                           required>
                     <div class="invalid-feedback">
                         Please enter a valid password.
                     </div>
                 </div>
-                <div class="form-group passwords-match-validation">
+                <div class="form-group">
                     <label for="confirm_password">Confirm Password</label>
-                    <input id="confirm_password" name="confirm_password" class="form-control" type="password">
+                    <input id="confirm_password" name="confirm_password" class="form-control passwords-match-validation"
+                           type="password" required>
                     <div class="invalid-feedback">
                         Passwords must match.
                     </div>
