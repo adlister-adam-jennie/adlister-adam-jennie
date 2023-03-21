@@ -123,9 +123,9 @@ public class MySQLAdsDao implements Ads {
     private Ad extractAd(ResultSet rs) throws SQLException {
 //        long adId = rs.getLong();
         PreparedStatement stmt = connection.prepareStatement("SELECT * FROM ad_lister_category_ad as a INNER JOIN ad_lister_categories as c on a.category_id = c.category_id WHERE a.ad_id = ? ");
-        List<Category> categories = fetchCategoriesById(rs.getLong("ad_id"));
+//        List<Category> categories = fetchCategoriesById(rs.getLong("ad_id"));
         stmt.setLong(1, rs.getLong("ad_id"));
-        ResultSet rst = stmt.executeQuery();
+        List<Category> categories = createCategoriesFromResults(stmt.executeQuery());
         Ad ad = new Ad(
             rs.getLong("ad_id"),
             rs.getLong("user_id"),
@@ -150,7 +150,7 @@ public class MySQLAdsDao implements Ads {
     private List<Category> createCategoriesFromResults(ResultSet rs) throws SQLException {
         List<Category> categories = new ArrayList<>();
         while (rs.next()) {
-            categories.add(new Category());
+            categories.add(new Category(rs.getString("category")));
         }
         return categories;
     }
