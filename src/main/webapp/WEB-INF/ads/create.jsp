@@ -20,26 +20,26 @@
                 </div>
                 <div class="form-group">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="category_1" id="flexCheckChecked ">
-                        <label class="form-check-label" for="flexCheckChecked">
+                        <input class="form-check-input" type="checkbox" value="1" name="category" id="service">
+                        <label class="form-check-label" for="service">
                             Service
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="category_2" id="flexCheckChecked">
-                        <label class="form-check-label" for="flexCheckChecked">
+                        <input class="form-check-input" type="checkbox" value="2" name="category" id="product">
+                        <label class="form-check-label" for="product">
                             Product
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="category_3" id="flexCheckChecked">
-                        <label class="form-check-label" for="flexCheckChecked">
+                        <input class="form-check-input" type="checkbox" value="3" name="category" id="recruitment">
+                        <label class="form-check-label" for="recruitment">
                             Recruitment
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="category_4" id="flexCheckChecked">
-                        <label class="form-check-label" for="flexCheckChecked">
+                        <input class="form-check-input" type="checkbox" value="4" name="category" id="limited_time">
+                        <label class="form-check-label" for="limited_time">
                             Limited Time
                         </label>
                     </div>

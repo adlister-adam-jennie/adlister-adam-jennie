@@ -17,30 +17,30 @@
                 </div>
                 <div class="form-group">
                     <label for="description">Description</label>
-                    <textarea id="description" name="description" class="form-control"><c:out value="${ad.description}"></c:out></textarea>
+                    <textarea id="description" name="description" class="form-control"><c:out value="${ad.description}"/></textarea>
                 </div>
                 <div class="form-group">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="${category.id}" name="service" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
+                        <input class="form-check-input" type="checkbox" value="1" name="category" id="service">
+                        <label class="form-check-label" for="service">
                             Service
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="${category.id}" name="product" id="flexCheckChecked">
-                        <label class="form-check-label" for="flexCheckChecked">
+                        <input class="form-check-input" type="checkbox" value="2" name="category" id="product">
+                        <label class="form-check-label" for="product">
                             Product
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="${category.id}" name="recruitment" id="flexCheckChecked">
-                        <label class="form-check-label" for="flexCheckChecked">
+                        <input class="form-check-input" type="checkbox" value="3" name="category" id="recruitment">
+                        <label class="form-check-label" for="recruitment">
                             Recruitment
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="${category.id}" name="limitedTime" id="flexCheckChecked">
-                        <label class="form-check-label" for="flexCheckChecked">
+                        <input class="form-check-input" type="checkbox" value="4" name="category" id="limited_time">
+                        <label class="form-check-label" for="limited_time">
                             Limited Time
                         </label>
                     </div>
