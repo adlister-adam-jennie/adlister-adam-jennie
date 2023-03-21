@@ -111,8 +111,8 @@ public class MySQLAdsDao implements Ads {
                 System.out.println(ad.getId());
                 stmt2.setLong(2, category.getId());
                 System.out.println(category.getId());
+                stmt2.executeUpdate();
             }
-            stmt2.executeUpdate();
             return adId;
         } catch (SQLException e) {
             throw new RuntimeException("Error creating a new ad.", e);
@@ -121,8 +121,11 @@ public class MySQLAdsDao implements Ads {
 
 
     private Ad extractAd(ResultSet rs) throws SQLException {
-        long adId = rs.getLong("id");
-        List<Category> categories = fetchCategoriesById(adId);
+//        long adId = rs.getLong();
+        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM ad_lister_category_ad as a INNER JOIN ad_lister_categories as c on a.category_id = c.category_id WHERE a.ad_id = ? ");
+        List<Category> categories = fetchCategoriesById(rs.getLong("ad_id"));
+        stmt.setLong(1, rs.getLong("ad_id"));
+        ResultSet rst = stmt.executeQuery();
         Ad ad = new Ad(
             rs.getLong("ad_id"),
             rs.getLong("user_id"),
@@ -144,7 +147,13 @@ public class MySQLAdsDao implements Ads {
         return name;
     }
 
-
+    private List<Category> createCategoriesFromResults(ResultSet rs) throws SQLException {
+        List<Category> categories = new ArrayList<>();
+        while (rs.next()) {
+            categories.add(new Category());
+        }
+        return categories;
+    }
 
     private List<Ad> createAdsFromResults(ResultSet rs) throws SQLException {
         List<Ad> ads = new ArrayList<>();
