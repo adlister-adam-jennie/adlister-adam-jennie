@@ -53,7 +53,7 @@
 		element.siblings(".invalid-feedback").first().text(message);
 	}
 
-	$("#username").on("keyup",async function () {
+	$("#username.register").on("keyup",async function () {
 		formatInvalid($(this));
 		if (!lengthIsInBounds($(this))) {
 			setAndDisplayValidityMessage($(this),"Username is too short or too long");
@@ -73,7 +73,7 @@
 		formatValid($(this));
 		setAndDisplayValidityMessage($(this), "");
 	});
-	$("#email").on("keyup", function () {
+	$("#email.register").on("keyup", function () {
 		formatInvalid($(this));
 		if (!lengthIsInBounds($(this))) {
 			setAndDisplayValidityMessage($(this),"Email is too short or too long");
@@ -85,7 +85,7 @@
 		}
 	})
 
-	$("#password").on("keyup", function () {
+	$("#password.register").on("keyup", function () {
 		formatInvalid($(this));
 		if (!lengthIsInBounds($(this))) {
 			setAndDisplayValidityMessage($(this),"Password is too short or too long");
