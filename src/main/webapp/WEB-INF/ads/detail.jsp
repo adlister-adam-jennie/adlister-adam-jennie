@@ -7,7 +7,8 @@
 <jsp:include page="/WEB-INF/partials/navbar.jsp"/>
 <div class="container">
         <h2 class="ad-title">${ad.title}</h2>
-        <h4>Made by ${ad.username}</h4>
+        <h4>Made by ${user.username}</h4>
+        <p style="white-space: pre-line" class="ad-description">${category.name}</p>
         <p style="white-space: pre-line" class="ad-description">${ad.description}</p>
 </div>
 

@@ -18,6 +18,32 @@
                     <label for="description">Description</label>
                     <textarea id="description" name="description" class="form-control"></textarea>
                 </div>
+                <div class="form-group">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="category_1" id="flexCheckChecked ">
+                        <label class="form-check-label" for="flexCheckChecked">
+                            Service
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="category_2" id="flexCheckChecked">
+                        <label class="form-check-label" for="flexCheckChecked">
+                            Product
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="category_3" id="flexCheckChecked">
+                        <label class="form-check-label" for="flexCheckChecked">
+                            Recruitment
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="category_4" id="flexCheckChecked">
+                        <label class="form-check-label" for="flexCheckChecked">
+                            Limited Time
+                        </label>
+                    </div>
+                </div>
                 <div class="form-group col-2">
                     <input type="submit" class="btn btn-block btn-primary">
                 </div>

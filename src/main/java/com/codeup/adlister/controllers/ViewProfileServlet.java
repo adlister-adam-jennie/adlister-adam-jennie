@@ -24,7 +24,6 @@ public class ViewProfileServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-//        String username = request.getParameter("username");
         int deleteBtn = Integer.parseInt(request.getParameter("delete"));
         DaoFactory.getAdsDao().deleteAds(deleteBtn);
 

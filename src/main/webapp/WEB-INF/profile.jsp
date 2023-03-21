@@ -19,6 +19,7 @@
                 <h2 class="ad-title">${ad.title}</h2>
                 <p style="white-space: pre-line" class="ad-description">${ad.description}</p>
                 <form action="${pageContext.request.contextPath}/profile" method="post">
+                    <a href="/ads/detail?id=${ad.id}&userId=${ad.userId}">Details</a>
                     <a href="/ads/update?id=${ad.id}">Update</a>
                     <a href="/ads/delete?id=${ad.id}">Delete</a>
                 </form>

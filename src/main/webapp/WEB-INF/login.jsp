@@ -23,6 +23,9 @@
                 <div class="form-group col-2">
                     <input type="submit" class="btn btn-primary btn-block" value="Log In">
                 </div>
+                <div class="form-group">
+                    <p>Don't have an account? <a class="nav-link link-primary" href="${pageContext.request.contextPath}/register">Click here to register!</a></p>
+                </div>
             </div>
         </form>
     </div>

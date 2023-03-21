@@ -1,11 +1,9 @@
 package com.codeup.adlister.dao;
 
 import com.codeup.adlister.models.Ad;
+import com.codeup.adlister.models.Category;
 import com.mysql.cj.jdbc.Driver;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -66,6 +64,7 @@ public class MySQLAdsDao implements Ads {
 
     @Override
     public void updateAd(long ad_id, String title, String description) {
+//        needs to update the categories as well
         try {
             String insertQuery = "UPDATE ad_lister_ads SET title = ?, description = ? WHERE ad_id = ?";
             PreparedStatement stmt = connection.prepareStatement(insertQuery);
@@ -80,6 +79,7 @@ public class MySQLAdsDao implements Ads {
 
     @Override
     public Ad getAd(long adId) {
+//        needs to grab categories as well
         try {
             PreparedStatement stmt = connection.prepareStatement("SELECT * FROM ad_lister_ads WHERE ad_id = ?");
             stmt.setLong(1, adId);
@@ -94,6 +94,7 @@ public class MySQLAdsDao implements Ads {
     @Override
     public Long insert(Ad ad) {
         try {
+//            add categories into the insert
             String insertQuery = "INSERT INTO ad_lister_ads(user_id, title, description) VALUES (?, ?, ?)";
             PreparedStatement stmt = connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);
             stmt.setLong(1, ad.getUserId());
@@ -102,22 +103,51 @@ public class MySQLAdsDao implements Ads {
             stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
             rs.next();
-            return rs.getLong(1);
+            long adId = rs.getLong(1);
+            PreparedStatement stmt2 = connection.prepareStatement("INSERT INTO ad_lister_category_ad(ad_id, category_id) VALUES (?,?)");
+//            iterate over the ad categories and insert the ad_category (datebase the ids)
+            for (Category category: ad.getCategories()) {
+                stmt2.setLong(1, adId);
+                System.out.println(ad.getId());
+                stmt2.setLong(2, category.getId());
+                System.out.println(category.getId());
+            }
+            stmt2.executeUpdate();
+            return adId;
         } catch (SQLException e) {
             throw new RuntimeException("Error creating a new ad.", e);
         }
     }
 
 
-
     private Ad extractAd(ResultSet rs) throws SQLException {
-        return new Ad(
+//        long adId =
+//        get the ad id
+//        multistep
+//        make a method to fetch categoriesby ad id
+//        List<Category> categories = new ArrayList<>();
+//                Ad ad =
+          return new Ad(
             rs.getLong("ad_id"),
             rs.getLong("user_id"),
             rs.getString("title"),
             rs.getString("description")
+
         );
+//         return ad;
+
+        //                set categories
     }
+
+//    private List<Category> fetchCategoriesById(){
+//        //    fetch cate
+//
+////    new list
+////    add to that list
+////            return list
+//    }
+
+
 
     private List<Ad> createAdsFromResults(ResultSet rs) throws SQLException {
         List<Ad> ads = new ArrayList<>();
@@ -126,4 +156,6 @@ public class MySQLAdsDao implements Ads {
         }
         return ads;
     }
+
+
 }

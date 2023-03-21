@@ -19,9 +19,13 @@ public class DetailAdServlet extends HttpServlet {
         Ad ad = DaoFactory.getAdsDao().getAd(adId);
         request.getSession().setAttribute("ad", ad);
 
+        System.out.println(request.getSession().getAttribute("userId"));
         long userId = Integer.parseInt(request.getParameter("userId"));
         User user = DaoFactory.getUsersDao().findByUserId(userId);
         request.getSession().setAttribute("user", user);
+
+//        need to grab the categories as well
+
         request.getRequestDispatcher("/WEB-INF/ads/detail.jsp").forward(request, response);
 
     }
