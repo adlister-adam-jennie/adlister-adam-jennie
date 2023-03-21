@@ -13,6 +13,10 @@ public class Category {
         this.name = name;
     }
 
+    public Category(long id) {
+        this.id = id;
+    }
+
     public long getId() {
         return id;
     }
