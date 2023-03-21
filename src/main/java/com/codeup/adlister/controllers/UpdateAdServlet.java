@@ -22,8 +22,8 @@ public class UpdateAdServlet extends HttpServlet {
         }
         long adId = Integer.parseInt(request.getParameter("id"));
         System.out.println(adId);
-        long categoryId = request.getParameter()
-        System.out.println(categoryId);
+//        long categoryId = request.getParameter()
+//        System.out.println(categoryId);
 //        the get ad method needs to grab the categories as well
         Ad ad = DaoFactory.getAdsDao().getAd(adId);
         request.getSession().setAttribute("ad", ad);

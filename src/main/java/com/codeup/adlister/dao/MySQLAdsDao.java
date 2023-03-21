@@ -121,31 +121,28 @@ public class MySQLAdsDao implements Ads {
 
 
     private Ad extractAd(ResultSet rs) throws SQLException {
-//        long adId =
-//        get the ad id
-//        multistep
-//        make a method to fetch categoriesby ad id
-//        List<Category> categories = new ArrayList<>();
-//                Ad ad =
-          return new Ad(
+        long adId = rs.getLong("id");
+        List<Category> categories = fetchCategoriesById(adId);
+        Ad ad = new Ad(
             rs.getLong("ad_id"),
             rs.getLong("user_id"),
             rs.getString("title"),
             rs.getString("description")
 
         );
-//         return ad;
+        ad.setCategories(categories);
+        return ad;
 
-        //                set categories
     }
 
-//    private List<Category> fetchCategoriesById(){
-//        //    fetch cate
-//
-////    new list
-////    add to that list
-////            return list
-//    }
+    private List<Category> fetchCategoriesById(long adId){
+        List<Category> name = new ArrayList<>();
+        name.add(new Category(1, "service"));
+        name.add(new Category(2, "product"));
+        name.add(new Category(3, "recruitment"));
+        name.add(new Category(4, "limitedTime"));
+        return name;
+    }
 
 
 
