@@ -13,21 +13,21 @@
             <div class="row gy-3">
                 <div class="form-group">
                     <label for="username">Username</label>
-                    <input id="username" name="username" class="form-control" type="text" required>
+                    <input id="username" name="username" class="form-control register" type="text" required>
                     <div class="invalid-feedback">
                         Please enter a valid username.
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input id="email" name="email" class="form-control" type="text" required>
+                    <input id="email" name="email" class="form-control register" type="text" required>
                     <div class="invalid-feedback">
                         Please enter a valid email.
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input id="password" name="password" class="form-control passwords-match-validation" type="password"
+                    <input id="password" name="password" class="form-control passwords-match-validation register" type="password"
                            required>
                     <div class="invalid-feedback">
                         Please enter a valid password.
@@ -35,7 +35,7 @@
                 </div>
                 <div class="form-group">
                     <label for="confirm_password">Confirm Password</label>
-                    <input id="confirm_password" name="confirm_password" class="form-control passwords-match-validation"
+                    <input id="confirm_password" name="confirm_password" class="form-control passwords-match-validation register"
                            type="password" required>
                     <div class="invalid-feedback">
                         Passwords must match.
