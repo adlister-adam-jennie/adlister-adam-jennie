@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet(name = "controllers.UpdateAdServlet", urlPatterns = "/ads/update")
 public class UpdateAdServlet extends HttpServlet {
@@ -26,18 +28,36 @@ public class UpdateAdServlet extends HttpServlet {
 //        System.out.println(categoryId);
 //        the get ad method needs to grab the categories as well
         Ad ad = DaoFactory.getAdsDao().getAd(adId);
+        List<Category> categories = ad.getCategories();
+        for (Category category : categories) {
+            request.setAttribute("category" + category.getId(), "checked");
+        }
         request.getSession().setAttribute("ad", ad);
         request.getRequestDispatcher("/WEB-INF/ads/update.jsp").forward(request, response);
 
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         long adId = Integer.parseInt(request.getParameter("id"));
+        List<Category> categories;
+        try {
+            categories = createCategoryListFromParameters(request.getParameterValues("category"));
+        } catch (NullPointerException e) {
+            categories = null;
+        }
         String updateTitle = request.getParameter("title");
         String updateDescription = request.getParameter("description");
 //        needs to update the categories as well
-        DaoFactory.getAdsDao().updateAd(adId, updateTitle, updateDescription);
+        DaoFactory.getAdsDao().updateAd(adId, updateTitle, updateDescription, categories);
 
         response.sendRedirect("/profile");
+    }
+
+    private static List<Category> createCategoryListFromParameters(String[] categoryIds) {
+        List<Category> categories = new ArrayList<>();
+        for (String categoryId : categoryIds) {
+            categories.add(new Category(Integer.parseInt(categoryId)));
+        }
+        return categories;
     }
 
 }
