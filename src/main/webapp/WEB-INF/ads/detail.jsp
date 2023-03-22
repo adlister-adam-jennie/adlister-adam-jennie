@@ -8,7 +8,7 @@
 <jsp:include page="/WEB-INF/partials/navbar.jsp"/>
 <div class="container">
         <h2 class="ad-title">${ad.title}</h2>
-        <h4>Made by ${user.username}</h4>
+        <h4>Made by ${username}</h4>
     <c:forEach var="category" items="${ad.categories}">
         <p style="white-space: pre-line" class="ad-category">${category.name}</p>
     </c:forEach>
