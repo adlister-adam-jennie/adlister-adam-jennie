@@ -13,11 +13,11 @@ const ads = (function () {
 	return array;
 })();
 
-function getCategories(categories){
+function getCategories(categories) {
 	const array = [];
-	categories.each(function (){
+	categories.each(function () {
 		array.push(
-			$(this).val()
+			$(this).val().toString()
 		)
 	})
 	return array;
@@ -29,42 +29,53 @@ function hideAllAdDivs() {
 	})
 }
 
-function showAllAdDivs() {
+function showAdDivs(ads) {
 	$(".ad").each(function () {
-		$(this).removeClass("d-none");
+		for (const ad of ads) {
+			if ($(this).attr("data-ad-id") === ad.id) {
+				$(this).removeClass("d-none");
+			}
+		}
 	})
 }
 
-function searchAds(searchTerm, catValue) {
-	if (searchTerm === "" && catValue[0] === "0") {
-		showAllAdDivs();
-		return;
+function searchAds(searchTerm) {
+	if (searchTerm === "") {
+		return ads;
 	}
-	hideAllAdDivs();
+	const resultsArr = [];
 	for (let ad of ads) {
-		console.log(ad.categories)
 		if (ad.title.toLowerCase().includes(searchTerm)) {
-			$(`[data-ad-id='${ad.id}']`).first().removeClass("d-none");
+			resultsArr.push(ad);
+			continue;
 		}
 		if (ad.description.toLowerCase().includes(searchTerm)) {
-			$(`[data-ad-id='${ad.id}']`).first().removeClass("d-none");
+			resultsArr.push(ad);
 		}
-		for (let category of ad.categories){
-			for (let value of catValue){
-				if (value == category){
-					$(`[data-ad-id='${ad.id}']`).first().removeClass("d-none");
-				}
+	}
+	return resultsArr;
+}
+
+function filterAdsByCategory(ads, categoriesFilter) {
+	if (categoriesFilter.includes("0")) {
+		return ads;
+	}
+	const resultsArr = [];
+	for (const ad of ads) {
+		for (const category of ad.categories) {
+			if (categoriesFilter.includes(category)) {
+				resultsArr.push(ad);
 			}
 		}
 	}
+	return resultsArr;
 }
 
-$("#ad-category").on("change",function (){
-	searchAds($("#ad-search").val().toLowerCase().trim(), $(this).val());
-
-})
-
-
-$("#ad-search").on("keyup", function (){
-	searchAds($(this).val().toLowerCase().trim(), $(this).val());
+$("#ad-search,#ad-category").each(function () {
+	$(this).on("keyup change", function () {
+		hideAllAdDivs();
+		const searchResult = searchAds($("#ad-search").val().toLowerCase().trim());
+		const filterResult = filterAdsByCategory(searchResult, $("#ad-category").val());
+		showAdDivs(filterResult);
+	})
 });
