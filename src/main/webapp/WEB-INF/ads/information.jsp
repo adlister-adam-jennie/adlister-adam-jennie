@@ -13,10 +13,12 @@
       <div class="row gy-3">
         <div class="form-group">
           <label for="email">Email</label>
-          <input id="email" name="email" class="form-control" type="text" value="${user.email}">
+          <input id="email" name="email" class="form-control register" type="text" value="${user.email}">
+          <div class="invalid-feedback"></div>
         </div>
         <div class="form-group col-2">
           <input type="submit" class="btn btn-block btn-primary">
+          <input name="userid" value="${user.id}" class="d-none">
         </div>
       </div>
     </form>

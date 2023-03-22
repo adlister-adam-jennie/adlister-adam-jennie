@@ -9,9 +9,7 @@
 
 <div class="container">
     <h1>Welcome, ${sessionScope.user.username}!</h1>
-    <p><a href="/ads/information?username=${user.username}">Update profile information</a></p>
-<%--    /ads/information?username=${user.username}--%>
-
+    <p><a href="/ads/information?userid=${user.id}">Update profile information</a></p>
 </div>
 
 <div class="container">
