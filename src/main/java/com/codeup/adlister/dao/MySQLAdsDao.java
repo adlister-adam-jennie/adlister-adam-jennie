@@ -52,14 +52,15 @@ public class MySQLAdsDao implements Ads {
 
     @Override
     public void deleteAds(int ad_id) {
-        PreparedStatement stmt = null;
         try {
-            stmt = connection.prepareStatement("DELETE FROM ad_lister_ads WHERE ad_id = ?");
-            stmt.setInt(1, ad_id);
-            stmt.executeQuery();
-//            stmt.executeUpdate();
+            PreparedStatement deleteCategories = connection.prepareStatement("DELETE FROM ad_lister_category_ad WHERE ad_id = ?;");
+            PreparedStatement deleteAd = connection.prepareStatement("DELETE FROM ad_lister_ads WHERE ad_id = ?");
+            deleteCategories.setInt(1, ad_id);
+            deleteCategories.executeUpdate();
+            deleteAd.setInt(1, ad_id);
+            deleteAd.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException("Error retrieving from delete ads method.", e);
+            throw new RuntimeException("Error deleting ad.", e);
         }
     }
 
