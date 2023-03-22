@@ -48,6 +48,9 @@
                 <div class="form-group col-2">
                     <input type="submit" class="btn btn-block btn-primary">
                     <input name="id" value="${ad.id}" class="d-none">
+                    <c:if test="${error}">
+                        <div class="alert alert-warning">This ad already exists, please change the title or description</div>
+                    </c:if>
                 </div>
             </div>
         </form>

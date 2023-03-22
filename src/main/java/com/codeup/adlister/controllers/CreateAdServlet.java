@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class CreateAdServlet extends HttpServlet {
         }
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         List<Category> categories = new ArrayList<>();
         String[] params = request.getParameterValues("category");
         if (params != null) {
@@ -43,8 +44,17 @@ public class CreateAdServlet extends HttpServlet {
                 request.getParameter("description"),
                 categories
         );
-
-        DaoFactory.getAdsDao().insert(ad);
+        try {
+            DaoFactory.getAdsDao().insert(ad);
+        } catch (SQLIntegrityConstraintViolationException e) {
+            request.setAttribute("error", true);
+            request.setAttribute("ad", ad);
+            for (Category category : categories) {
+                request.setAttribute("category" + category.getId(), "checked");
+            }
+            request.getRequestDispatcher("/WEB-INF/ads/create.jsp")
+                    .forward(request, response);
+        }
         response.sendRedirect("/profile");
     }
 }

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,11 +33,11 @@ public class UpdateAdServlet extends HttpServlet {
         for (Category category : categories) {
             request.setAttribute("category" + category.getId(), "checked");
         }
-        request.getSession().setAttribute("ad", ad);
+        request.setAttribute("ad", ad);
         request.getRequestDispatcher("/WEB-INF/ads/update.jsp").forward(request, response);
 
     }
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         long adId = Integer.parseInt(request.getParameter("id"));
         List<Category> categories;
         try {
@@ -47,7 +48,24 @@ public class UpdateAdServlet extends HttpServlet {
         String updateTitle = request.getParameter("title");
         String updateDescription = request.getParameter("description");
 //        needs to update the categories as well
-        DaoFactory.getAdsDao().updateAd(adId, updateTitle, updateDescription, categories);
+        try {
+            DaoFactory.getAdsDao().updateAd(adId, updateTitle, updateDescription, categories);
+        } catch (SQLIntegrityConstraintViolationException e) {
+                request.setAttribute("error", true);
+                Ad ad = new Ad();
+                ad.setId(adId);
+                ad.setTitle(updateTitle);
+                ad.setDescription(updateDescription);
+                ad.setCategories(categories);
+                request.setAttribute("ad", ad);
+                if (categories != null) {
+                    for (Category category : categories) {
+                        request.setAttribute("category" + category.getId(), "checked");
+                    }
+                }
+                request.getRequestDispatcher("/WEB-INF/ads/update.jsp")
+                        .forward(request, response);
+        }
 
         response.sendRedirect("/profile");
     }

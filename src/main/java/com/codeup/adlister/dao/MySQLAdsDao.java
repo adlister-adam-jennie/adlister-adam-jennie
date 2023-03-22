@@ -65,7 +65,7 @@ public class MySQLAdsDao implements Ads {
     }
 
     @Override
-    public void updateAd(long ad_id, String title, String description, List<Category> categories) {
+    public void updateAd(long ad_id, String title, String description, List<Category> categories) throws SQLIntegrityConstraintViolationException{
 //        needs to update the categories as well
         try {
             String insertQuery = "UPDATE ad_lister_ads SET title = ?, description = ? WHERE ad_id = ?;";
@@ -85,6 +85,8 @@ public class MySQLAdsDao implements Ads {
                     stmt3.executeUpdate();
                 }
             }
+        } catch (SQLIntegrityConstraintViolationException e) {
+            throw e;
         } catch (SQLException e) {
             throw new RuntimeException("Error updating the ad.", e);
         }
@@ -105,7 +107,7 @@ public class MySQLAdsDao implements Ads {
     }
 
     @Override
-    public Long insert(Ad ad) {
+    public Long insert(Ad ad) throws SQLIntegrityConstraintViolationException{
         try {
 //            add categories into the insert
             String insertQuery = "INSERT INTO ad_lister_ads(user_id, title, description) VALUES (?, ?, ?)";
@@ -128,6 +130,8 @@ public class MySQLAdsDao implements Ads {
                 }
             }
             return adId;
+        } catch (SQLIntegrityConstraintViolationException e) {
+            throw e;
         } catch (SQLException e) {
             throw new RuntimeException("Error creating a new ad.", e);
         }
