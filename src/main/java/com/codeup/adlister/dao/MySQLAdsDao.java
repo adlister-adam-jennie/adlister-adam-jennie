@@ -117,14 +117,15 @@ public class MySQLAdsDao implements Ads {
             ResultSet rs = stmt.getGeneratedKeys();
             rs.next();
             long adId = rs.getLong(1);
-            PreparedStatement stmt2 = connection.prepareStatement("INSERT INTO ad_lister_category_ad(ad_id, category_id) VALUES (?,?)");
-//            iterate over the ad categories and insert the ad_category (datebase the ids)
-            for (Category category: ad.getCategories()) {
-                stmt2.setLong(1, adId);
-                System.out.println(ad.getId());
-                stmt2.setLong(2, category.getId());
-                System.out.println(category.getId());
-                stmt2.executeUpdate();
+            if (!ad.getCategories().isEmpty()) {
+                PreparedStatement stmt2 = connection.prepareStatement("INSERT INTO ad_lister_category_ad(ad_id, category_id) VALUES (?,?)");
+                for (Category category : ad.getCategories()) {
+                    stmt2.setLong(1, adId);
+                    System.out.println(ad.getId());
+                    stmt2.setLong(2, category.getId());
+                    System.out.println(category.getId());
+                    stmt2.executeUpdate();
+                }
             }
             return adId;
         } catch (SQLException e) {
