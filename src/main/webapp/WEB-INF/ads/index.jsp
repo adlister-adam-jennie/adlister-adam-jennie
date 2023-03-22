@@ -14,8 +14,9 @@
             <input class="form-control" type="text" placeholder="Search Ads" id="ad-search">
         </label>
         <div class="col-12 col-md-4 pr-1">
+            <label for="ad-category">Filter by Category</label>
             <select class=" mb-3 form-select" id="ad-category" multiple>
-                <option value="0" selected>Search by Categories</option>
+                <option value="0" selected>Show All</option>
                 <option value="1">Service</option>
                 <option value="2">Product</option>
                 <option value="3">Recruitment</option>
