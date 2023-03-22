@@ -67,12 +67,23 @@ public class MySQLAdsDao implements Ads {
     public void updateAd(long ad_id, String title, String description, List<Category> categories) {
 //        needs to update the categories as well
         try {
-            String insertQuery = "UPDATE ad_lister_ads SET title = ?, description = ? WHERE ad_id = ?";
+            String insertQuery = "UPDATE ad_lister_ads SET title = ?, description = ? WHERE ad_id = ?;";
             PreparedStatement stmt = connection.prepareStatement(insertQuery);
+            PreparedStatement stmt2 = connection.prepareStatement("DELETE FROM ad_lister_category_ad WHERE ad_id = ?;");
+            PreparedStatement stmt3 = connection.prepareStatement("INSERT INTO ad_lister_category_ad(ad_id, category_id) VALUES (?,?)");
             stmt.setString(1, title);
             stmt.setString(2, description);
             stmt.setLong(3, ad_id);
             stmt.executeUpdate();
+            stmt2.setLong(1,ad_id);
+            stmt2.executeUpdate();
+            if (categories != null) {
+                for (Category category : categories) {
+                    stmt3.setLong(1, ad_id);
+                    stmt3.setLong(2, category.getId());
+                    stmt3.executeUpdate();
+                }
+            }
         } catch (SQLException e) {
             throw new RuntimeException("Error updating the ad.", e);
         }
