@@ -18,11 +18,12 @@
         <c:forEach var="ad" items="${ads}">
             <div class="ad col-md-6 col-12" data-ad-id="${ad.id}">
                 <h2 class="ad-title bg-primary-subtle"><c:out value="${ad.title}"></c:out></h2>
-                <c:forEach var="categories" items="${ad.categories}">
-                    <p style="white-space: pre-line" class="ad-description category-color"><c:out value="${categories.name}"></c:out></p>
-                </c:forEach>
+
                 <p style="white-space: pre-line" class="ad-description"><c:out value="${ad.description}"></c:out></p>
                 <a href="/ads/detail?id=${ad.id}&userId=${ad.userId}">Details</a>
+                <c:forEach var="categories" items="${ad.categories}">
+                    <p style="background-color:#C3E0E5" class="ad-description"><c:out value="${categories.name}"></c:out></p>
+                </c:forEach>
             </div>
         </c:forEach>
     </div>
