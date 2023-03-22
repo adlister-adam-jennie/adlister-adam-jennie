@@ -21,25 +21,25 @@
                 </div>
                 <div class="form-group">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="1" name="category" id="service">
+                        <input class="form-check-input" type="checkbox" value="1" name="category" id="service" <c:out value="${category1}"/>>
                         <label class="form-check-label" for="service">
                             Service
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="2" name="category" id="product">
+                        <input class="form-check-input" type="checkbox" value="2" name="category" id="product" <c:out value="${category2}"/>>
                         <label class="form-check-label" for="product">
                             Product
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="3" name="category" id="recruitment">
+                        <input class="form-check-input" type="checkbox" value="3" name="category" id="recruitment" <c:out value="${category3}"/>>
                         <label class="form-check-label" for="recruitment">
                             Recruitment
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="4" name="category" id="limited_time">
+                        <input class="form-check-input" type="checkbox" value="4" name="category" id="limited_time" <c:out value="${category4}"/>>
                         <label class="form-check-label" for="limited_time">
                             Limited Time
                         </label>
