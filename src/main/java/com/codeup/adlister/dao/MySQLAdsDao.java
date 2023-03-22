@@ -56,7 +56,8 @@ public class MySQLAdsDao implements Ads {
         try {
             stmt = connection.prepareStatement("DELETE FROM ad_lister_ads WHERE ad_id = ?");
             stmt.setInt(1, ad_id);
-            stmt.executeUpdate();
+            stmt.executeQuery();
+//            stmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("Error retrieving from delete ads method.", e);
         }
