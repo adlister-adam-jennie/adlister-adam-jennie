@@ -29,8 +29,10 @@ public class CreateAdServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         List<Category> categories = new ArrayList<>();
         String[] params = request.getParameterValues("category");
-        for (String param : params) {
-            categories.add(new Category(Integer.parseInt(param)));
+        if (params != null) {
+            for (String param : params) {
+                categories.add(new Category(Integer.parseInt(param)));
+            }
         }
 
         long userId = ((User) request.getSession().getAttribute("user")).getId();
