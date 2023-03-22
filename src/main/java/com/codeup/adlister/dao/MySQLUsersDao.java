@@ -75,6 +75,19 @@ public class MySQLUsersDao implements Users {
         }
     }
 
+    @Override
+    public void updateEmail(long userId,String email) {
+        try {
+            String insertQuery = "UPDATE ad_lister_users SET email = ? WHERE user_id = ?";
+            PreparedStatement stmt = connection.prepareStatement(insertQuery);
+            stmt.setString(1, email);
+            stmt.setLong(2, userId);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error updating the user email.", e);
+        }
+    }
+
     private User extractUser(ResultSet rs) throws SQLException {
         if (! rs.next()) {
             return null;
