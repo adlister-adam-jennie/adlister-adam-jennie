@@ -16,8 +16,13 @@
     <div class="row">
         <c:forEach var="ad" items="${ads}">
             <div class="ad col-md-6 col-12" data-ad-id="${ad.id}">
-                <h2 class="ad-title">${ad.title}</h2>
-                <p style="white-space: pre-line" class="ad-description">${ad.description}</p>
+                <h2 class="ad-title"><c:out value="${ad.title}"></c:out></h2>
+                <p style="white-space: pre-line" class="ad-description"><c:out value="${ad.description}"></c:out></p>
+                <p style="color: #278ED5">
+                    <c:forEach var="categories" items="${ad.categories}">
+                        <c:out value="${categories.name}"></c:out>
+                    </c:forEach>
+                </p>
                 <form action="${pageContext.request.contextPath}/profile" method="post">
                     <a href="/ads/detail?id=${ad.id}&userId=${ad.userId}">Details</a>
                     <a href="/ads/update?id=${ad.id}">Update</a>
