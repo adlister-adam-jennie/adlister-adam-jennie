@@ -13,6 +13,9 @@
         <p style="white-space: pre-line" class="ad-category">${category.name}</p>
     </c:forEach>
         <p style="white-space: pre-line" class="ad-description">${ad.description}</p>
+        <c:forEach var="category" items="${ad.categories}">
+            <p style="color: #278ED5" class="ad-category">${category.name}</p>
+        </c:forEach>
 
 </div>
 
