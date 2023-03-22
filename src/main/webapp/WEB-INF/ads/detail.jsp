@@ -9,10 +9,10 @@
 <div class="container">
         <h2 class="ad-title">${ad.title}</h2>
         <h4>Made by ${user.username}</h4>
-    <c:forEach var="category" items="${ad.categories}">
-        <p style="white-space: pre-line" class="ad-category">${category.name}</p>
-    </c:forEach>
         <p style="white-space: pre-line" class="ad-description">${ad.description}</p>
+        <c:forEach var="category" items="${ad.categories}">
+            <p style="color: #278ED5" class="ad-category">${category.name}</p>
+        </c:forEach>
 
 </div>
 

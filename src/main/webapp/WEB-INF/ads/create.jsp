@@ -12,7 +12,7 @@
             <div class="row gy-3">
                 <div class="form-group">
                     <label for="title">Title</label>
-                    <input id="title" name="title" class="form-control" type="text">
+                    <input id="title" name="title" class="form-control" type="text" required>
                 </div>
                 <div class="form-group">
                     <label for="description">Description</label>
