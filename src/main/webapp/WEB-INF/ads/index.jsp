@@ -9,7 +9,16 @@
 
 <div class="container">
     <div class="d-flex align-items-center row my-3 mx-0">
-        <div class="fs-1 col-12 col-md-8 p-0">Here Are all the ads!</div>
+        <div class="fs-1 col-12 col-md-4 p-0">Here Are all the ads!</div>
+        <div class="col-12 col-md-4 p-0">
+            <select class=" mb-3 form-select" id="ad-category" multiple>
+                <option value="0" selected>Search by Categories</option>
+                <option value="1">Service</option>
+                <option value="2">Product</option>
+                <option value="3">Recruitment</option>
+                <option value="4">Limited Time</option>
+            </select>
+        </div>
         <label class="col-12 col-md-4 p-0">
             <input class="form-control" type="text" placeholder="Search Ads" id="ad-search">
         </label>
@@ -19,10 +28,13 @@
             <div class="ad col-md-6 col-12" data-ad-id="${ad.id}">
                 <h2 class="ad-title bg-primary-subtle"><c:out value="${ad.title}"></c:out></h2>
                 <p style="white-space: pre-line" class="ad-description"><c:out value="${ad.description}"></c:out></p>
-                <p style="color: #278ED5"><a href="/ads/detail?id=${ad.id}&userId=${ad.userId}">Details</a>
+                <p>
+                    <a href="/ads/detail?id=${ad.id}&userId=${ad.userId}">Details</a>
+                    <ul style="color: #278ED5" id="ad-categories" >
                     <c:forEach var="categories" items="${ad.categories}">
-                        <c:out value="${categories.name}"></c:out>
+                       <li class="ad-category" value="${categories.id}"><c:out value="${categories.name}"></c:out></li>
                     </c:forEach>
+                    </ul>
                 </p>
             </div>
         </c:forEach>
