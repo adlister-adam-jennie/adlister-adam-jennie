@@ -38,7 +38,12 @@ public class UpdateAdServlet extends HttpServlet {
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         long adId = Integer.parseInt(request.getParameter("id"));
-        List<Category> categories = createCategoryListFromParameters(request.getParameterValues("category"));
+        List<Category> categories;
+        try {
+            categories = createCategoryListFromParameters(request.getParameterValues("category"));
+        } catch (NullPointerException e) {
+            categories = null;
+        }
         String updateTitle = request.getParameter("title");
         String updateDescription = request.getParameter("description");
 //        needs to update the categories as well
