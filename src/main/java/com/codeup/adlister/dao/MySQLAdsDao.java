@@ -63,7 +63,7 @@ public class MySQLAdsDao implements Ads {
     }
 
     @Override
-    public void updateAd(long ad_id, String title, String description) {
+    public void updateAd(long ad_id, String title, String description, List<Category> categories) {
 //        needs to update the categories as well
         try {
             String insertQuery = "UPDATE ad_lister_ads SET title = ?, description = ? WHERE ad_id = ?";
@@ -150,7 +150,7 @@ public class MySQLAdsDao implements Ads {
     private List<Category> createCategoriesFromResults(ResultSet rs) throws SQLException {
         List<Category> categories = new ArrayList<>();
         while (rs.next()) {
-            categories.add(new Category(rs.getString("category")));
+            categories.add(new Category(rs.getLong("category_id") ,rs.getString("category")));
         }
         return categories;
     }
